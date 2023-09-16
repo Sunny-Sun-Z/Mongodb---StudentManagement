@@ -13,26 +13,27 @@ namespace StudentManagement.Services
         }
         public Student Create(Student student)
         {
-            throw new NotImplementedException();
+            _students.InsertOne(student);
+            return student;
         }
 
-        public void Update(int id, Student student)
+        public void Update(string id, Student student)
         {
-            throw new NotImplementedException();
+            _students.ReplaceOne(s => s.Id == id, student);
         }
-        public void Remove(int id)
+        public void Remove(string id)
         {
-            throw new NotImplementedException();
+            _students.DeleteOne(s => s.Id == id);
         }
 
-        public Student GetById(int id)
+        public Student GetById(string id)
         {
-            throw new NotImplementedException();
+            return _students.Find(s => s.Id == id).FirstOrDefault();
         }
 
         public List<Student> Get()
         {
-            throw new NotImplementedException();
+            return _students.Find(student => true).ToList();
         }
     }
 }
